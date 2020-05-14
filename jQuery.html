@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+
+
+<head>
+    <style> 
+    .myClass{
+
+        background-color:red;
+        }</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+
+//
+// problema 3
+//
+
+function getRandomColor() {
+  var characters = "0123456789ABCDEF"; //randomizam culoarea fiecarui cuvant 
+  var color = '#';
+
+  for (var i = 0; i < 6; i++) {
+    color += characters[getRandomNumber(0, 15)];
+  }
+  
+  return color;
+}
+
+function getRandomNumber(low, high) {
+  var r = Math.floor(Math.random() * (high - low + 1)) + low;
+  return r;
+}
+
+        $(document).dblclick(function () {
+            
+            
+            word=$.trim(window.getSelection());
+            
+            $('.definition').each(function (d) {
+                var c = '';
+                var result = $(this).text().split(' ');  
+                $.each(result, function (i) {   //parcurgem fiecare cuvant din text
+                    if (result[i] != '' && result[i]==word) {
+                        var color=getRandomColor();
+                        console.log(color);
+                        var link= '<span style="background-color:'+color+'">'+  result[i] + '</span>'; //il 'infasuram' intr-un span cu o culoare random 
+   
+		
+                        
+                        c +=" "+ link; //refacem textul initial 
+                    }
+                    else {
+                        c+=" "+result[i]; 
+                    }
+                })
+                $(this).html(c); 
+            });
+        });
+        
+    </script>
+</head>
+
+<body>
+    <span class="definition">See Goodby See See See See See   word random word random chosen word random word1</span>
+</body>
+
+</html>
